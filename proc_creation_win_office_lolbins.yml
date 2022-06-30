@@ -50,6 +50,6 @@ detection:
       Commandline|contains:
         - '{90150000-0012-0000-0000-0000000FF1CE}'
         - 'shell32.dll,Control_RunDLL "srchadmin.dll'
-	condition: selection and not filter_false_positives
+  condition: selection and not filter_false_positives
 falsepositives:
   - unknown
