@@ -3,8 +3,8 @@ status: stable
 description: Detects LOLBINS running as child process of MS Office applications.
 author: Justin Lentz
 tags:
- - attack.execution
- - attack.t1204.002
+  - attack.execution
+  - attack.t1204.002
 date: 2022/06/29
 level: critical
 logsource:
@@ -21,8 +21,8 @@ detection:
       - '\OUTLOOK.EXE'
       - '\MSACCESS.EXE'
       - '\EQNEDT32.EXE'
-	Image|endswith:
-	  - '\rundll32.exe'
+    Image|endswith:
+      - '\rundll32.exe'
       - '\cmd.exe'
       - '\powershell.exe'
       - '\pwsh.exe'
@@ -34,22 +34,22 @@ detection:
       - '\cscript.exe'
       - '\wscript.exe'
       - '\wmic.exe'
-	  - '\msiexec.exe'
-	  - '\hh.exe'
-	  - '\msdt.exe'
-	  - '\sh.exe'
-	  - '\bash.exe'
-	  - '\scrcons.exe'
-	  - '\scriptrunner.exe'
-	  - '\mftrace.exe'
-	  - '\AppVLP.exe'
-	  - '\msbuild.exe'
-	  - '\verclsid.exe'
-	  - '\svchost.exe'
+      - '\msiexec.exe'
+      - '\hh.exe'
+      - '\msdt.exe'
+      - '\sh.exe'
+      - '\bash.exe'
+      - '\scrcons.exe'
+      - '\scriptrunner.exe'
+      - '\mftrace.exe'
+      - '\AppVLP.exe'
+      - '\msbuild.exe'
+      - '\verclsid.exe'
+      - '\svchost.exe'
     filter_false_positives:
-	  Commandline|contains:
-	  - '{90150000-0012-0000-0000-0000000FF1CE}'
-      - 'shell32.dll,Control_RunDLL "srchadmin.dll'
+      Commandline|contains:
+        - '{90150000-0012-0000-0000-0000000FF1CE}'
+        - 'shell32.dll,Control_RunDLL "srchadmin.dll'
 	condition: selection and not filter_false_positives
 falsepositives:
   - unknown
