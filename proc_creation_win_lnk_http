@@ -1,0 +1,29 @@
+title: proc_creation_win_lnk_http
+status: experimental
+description: Detects LNK files reaching out to websites to download malicious files with an image type extension.
+author: Justin Lentz
+references:
+  - https://github.com/pr0xylife/Qakbot/blob/main/Qakbot_obama198_01.07.2022.txt
+tags:
+  - attack.execution
+  - attack.t1204.002
+date: 2022/07/02
+level: medium
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    Commandline|contains:
+      - '\cmd.exe'
+      - '\pwsh.exe'
+      - '\powershell.exe'
+    CommandLine|contains:
+      - 'http'
+      - 'https'
+      - '.jpg'
+      - '.png'
+      - '.jpeg'
+  condition: selection
+falsepositives:
+  - unknown
